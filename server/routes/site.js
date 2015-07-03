@@ -7,6 +7,10 @@
  */
 var config = require('../config');
 
-exports.index = function(req, res) {
-	res.sendFile(config.server.appPath + '/index.html')
+function site(req, res) {
+	res.sendFile(config.server.appPath + '/index.html');
+}
+
+module.exports = function(app) {
+	app.get('/*', site);
 };

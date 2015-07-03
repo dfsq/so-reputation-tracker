@@ -5,25 +5,20 @@
  */
 var express = require('express'),
 	config = require('./config'),
-	site = require('./routes/site'),
-	api = require('./routes/api'),
 	app = express();
-
 
 // Static assets
 app.use(express.static(config.server.appPath));
-//app.use(express.static(config.server.assetsPath));
 
-
-// API routes
-app.get('/api/profile/:userId', api.profile);
-
-// All undefined api routes should return a 404
-app.get('/api/*', api.error);
-
-// For all other requests serve index.html
-app.get('/*', site.index);
-
+// Routes
+[
+	'api/profile',
+	'api/error',
+	'site'
+].forEach(function(path) {
+	console.log(path);
+	require('./routes/' + path)(app);
+});
 
 // Run server
 app.listen(config.server.port);
