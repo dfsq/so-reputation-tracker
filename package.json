@@ -1,8 +1,8 @@
 {
   "name": "so-reputation-tracker",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Stackoverflow reputation tracker app.",
-  "main": "index.js",
+  "main": "server/index.js",
   "scripts": {
     "test": "gulp test"
   },
