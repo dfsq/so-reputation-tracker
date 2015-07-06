@@ -16,7 +16,6 @@ app.use(express.static(config.server.appPath));
 	'api/error',
 	'site'
 ].forEach(function(path) {
-	console.log(path);
 	require('./routes/' + path)(app);
 });
 
