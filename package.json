@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dfsq/so-reputation-tracker.git"
+    "url": "git@github.com:dfsq/so-reputation-tracker.git"
   },
   "keywords": [
     "stackoverflow",
