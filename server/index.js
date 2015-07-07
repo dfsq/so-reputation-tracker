@@ -20,5 +20,6 @@ app.use(express.static(config.server.appPath));
 });
 
 // Run server
-app.listen(config.server.port);
-console.log('Server listening on port ' + config.server.port);
+app.listen(config.server.port, config.server.hostname, function() {
+	console.log("Listening on " + config.server.hostname + ":" + config.server.port)
+});

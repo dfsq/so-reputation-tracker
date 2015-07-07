@@ -2,7 +2,8 @@ var path = require('path');
 
 module.exports = {
 	server: {
-		port: process.env.PORT || 9000,
+		hostname: process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1',
+		port: process.env.OPENSHIFT_NODEJS_PORT || 8080,
 		appPath: path.join(__dirname, '..', 'app'),
 		assetsPath: path.join(__dirname, '..', '.tmp')
 	},

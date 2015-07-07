@@ -4,8 +4,7 @@
   "description": "Stackoverflow reputation tracker app.",
   "main": "server/index.js",
   "scripts": {
-    "test": "gulp test",
-    "start": "node ./server/index.js"
+    "start": "supervisor server/index.js"
   },
   "repository": {
     "type": "git",
