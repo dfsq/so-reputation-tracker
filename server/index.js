@@ -13,6 +13,7 @@ app.use(express.static(config.server.appPath));
 // Routes
 [
 	'api/profile',
+	'api/reputation',
 	'api/error',
 	'site'
 ].forEach(function(path) {
