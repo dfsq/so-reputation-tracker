@@ -22,18 +22,34 @@ gulp.task('es6', function() {
 gulp.task('serve', ['browser-sync'], function() {});
 
 // Browsersync plugin reload UI
-gulp.task('browser-sync', ['nodemon'], function(done) {
-	browserSync({
+gulp.task('browser-sync', ['nodemon'], function() {
+	browserSync.init({
 		proxy: config.server.hostname + ':' + config.server.port,
 		port: '9000',
 		files: ['app/**/*.*']
-	}, done);
+	});
 });
 
 // Start/restart development server
-gulp.task('nodemon', function () {
-	nodemon({
+var BROWSER_SYNC_RELOAD_DELAY = 500;
+
+gulp.task('nodemon', function (cb) {
+	var called = false;
+	return nodemon({
 		script: './server/index.js',
-		ext: 'js html'
-	});
+		watch: ['./server/index.js']
+	})
+    .on('start', function onStart() {
+		// ensure start only got called once
+		if (!called) { cb(); }
+		called = true;
+    })
+    .on('restart', function onRestart() {
+		// reload connected browsers after a slight delay
+		setTimeout(function reload() {
+			browserSync.reload({
+				stream: false
+			});
+		}, BROWSER_SYNC_RELOAD_DELAY);
+    });
 });
