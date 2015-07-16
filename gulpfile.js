@@ -4,7 +4,11 @@ var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
 var concat = require('gulp-concat');
 var nodemon = require('gulp-nodemon');
+var browserSync = require('browser-sync');
 
+var config = require('./server/config');
+
+// ?? do I need it or jspm syster loader
 gulp.task('es6', function() {
     return gulp.src('app/scripts/**/*.js')
         .pipe(sourcemaps.init())
@@ -14,8 +18,20 @@ gulp.task('es6', function() {
         .pipe(gulp.dest('app/scripts/'));
 });
 
-// Start development server
-gulp.task('server', function () {
+// Run development server
+gulp.task('serve', ['browser-sync'], function() {});
+
+// Browsersync plugin reload UI
+gulp.task('browser-sync', ['nodemon'], function(done) {
+	browserSync({
+		proxy: config.server.hostname + ':' + config.server.port,
+		port: '9000',
+		files: ['app/**/*.*']
+	}, done);
+});
+
+// Start/restart development server
+gulp.task('nodemon', function () {
 	nodemon({
 		script: './server/index.js',
 		ext: 'js html'
