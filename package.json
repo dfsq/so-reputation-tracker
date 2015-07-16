@@ -39,10 +39,11 @@
   },
   "jspm": {
     "directories": {
-      "packages": "app/jspm_packages"
+      "baseURL": "app"
     },
-    "configFile": "app/config.js",
-    "dependencies": {},
+    "dependencies": {
+      "bootstrap": "github:twbs/bootstrap@^3.3.5"
+    },
     "devDependencies": {
       "babel": "npm:babel-core@^5.1.13",
       "babel-runtime": "npm:babel-runtime@^5.1.13",
