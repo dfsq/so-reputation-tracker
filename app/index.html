@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 
-<body>
+<body aurelia-app>
 
-    <div class="container" app-view>
+    <div class="container">
         <h1>Stackoverflow Reputation Tracker</h1>
         <p>Comming soon...</p>
     </div>
@@ -16,7 +16,10 @@
     <script src="jspm_packages/system.js"></script>
     <script src="config.js"></script>
 	<script>
-		System.import('./scripts/main');
+		System.config({
+			paths: {'*': 'scripts/*.js'}
+		});
+		System.import('aurelia-bootstrapper');
 	</script>
 </body>
 </html>
