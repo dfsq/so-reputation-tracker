@@ -23,11 +23,14 @@
   "homepage": "https://github.com/dfsq/so-reputation-tracker",
   "devDependencies": {
     "browser-sync": "^2.7.13",
+    "del": "^1.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.1.0",
+    "gulp-changed": "^1.2.1",
     "gulp-concat": "^2.6.0",
     "gulp-nodemon": "^2.0.3",
-    "gulp-sourcemaps": "^1.5.2"
+    "gulp-sourcemaps": "^1.5.2",
+    "run-sequence": "^1.1.2"
   },
   "dependencies": {
     "express": "^4.13.0",
