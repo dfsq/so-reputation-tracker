@@ -21,6 +21,8 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.7.0",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
     "core-js": "npm:core-js@0.9.18",
+    "d3": "npm:d3@3.5.6",
+    "nvd3": "npm:nvd3@1.8.1",
     "github:aurelia/binding@0.8.2": {
       "aurelia-dependency-injection": "github:aurelia/dependency-injection@0.9.0",
       "aurelia-metadata": "github:aurelia/metadata@0.7.0",
@@ -134,6 +136,9 @@ System.config({
       "fs": "github:jspm/nodelibs-fs@0.1.2",
       "process": "github:jspm/nodelibs-process@0.1.1",
       "systemjs-json": "github:systemjs/plugin-json@0.1.0"
+    },
+    "npm:nvd3@1.8.1": {
+      "d3": "npm:d3@3.5.6"
     }
   }
 });
