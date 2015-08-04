@@ -1,5 +1,6 @@
 bower_components
 node_modules
 app/jspm_packages
+app/dist
 .idea
 .DS_Store

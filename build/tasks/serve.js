@@ -27,7 +27,7 @@ gulp.task('nodemon', function(callback) {
 	var called = false;
 	return nodemon({
 		script: paths.server + 'index.js',
-		watch: [paths.server + 'index.js']
+		watch: [paths.server]
 	})
 	.on('start', function onStart() {
 		// ensure start only got called once
