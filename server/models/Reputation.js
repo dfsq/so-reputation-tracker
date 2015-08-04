@@ -52,6 +52,11 @@ Reputation.prototype.get = function () {
 				daysHash[timestamp] = [timestamp, 0, date, 0];
 			}
 
+			// If no reputation earned on this day
+			if (typeof item.reputation_change === 'undefined') {
+				item.reputation_change = 0;
+			}
+
 			// Store reputation gained by this day (since $start_date)
 			daysHash[timestamp][1] += item.reputation_change;
 
