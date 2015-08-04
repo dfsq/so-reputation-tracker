@@ -21,6 +21,7 @@ System.config({
     "babel-runtime": "npm:babel-runtime@5.7.0",
     "bootstrap": "github:twbs/bootstrap@3.3.5",
     "core-js": "npm:core-js@0.9.18",
+    "css": "github:systemjs/plugin-css@0.1.13",
     "d3": "npm:d3@3.5.6",
     "nvd3": "npm:nvd3@1.8.1",
     "github:aurelia/binding@0.8.2": {
