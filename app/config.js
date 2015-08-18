@@ -1,21 +1,19 @@
 System.config({
-  "defaultJSExtensions": true,
-  "transpiler": "babel",
-  "babelOptions": {
+  defaultJSExtensions: true,
+  transpiler: "babel",
+  babelOptions: {
     "optional": [
       "es7.decorators",
       "es7.classProperties"
     ]
   },
-  "paths": {
+  paths: {
     "*": "dist/*.js",
     "github:*": "jspm_packages/github/*",
     "npm:*": "jspm_packages/npm/*"
-  }
-});
+  },
 
-System.config({
-  "map": {
+  map: {
     "aurelia-bootstrapper": "github:aurelia/bootstrapper@0.16.0",
     "aurelia-fetch-client": "github:aurelia/fetch-client@0.1.2",
     "aurelia-framework": "github:aurelia/framework@0.15.0",
@@ -152,4 +150,3 @@ System.config({
     }
   }
 });
-

@@ -1,16 +1,28 @@
 import {inject} from 'aurelia-framework';
-import {Redirect} from 'aurelia-router';
-import {Storage} from './common/storage';
+import {UserInfo} from './common/userInfo';
 
-@inject(Storage)
+@inject(UserInfo)
 export class App {
 
-	constructor(storage) {
-		this.storage = storage;
+	constructor(userInfo) {
+		this.userInfo = userInfo;
 	}
 
 	configureRouter(config, router) {
-		config.addPipelineStep('authorize', CheckConfigStep);
+
+		const userInfo = this.userInfo;
+
+		config.addPipelineStep('authorize', {
+			run: function(routingContext, next) {
+				if (routingContext.nextInstructions.some(i => i.config.checkConfig)) {
+					return userInfo.getUser().then(function(user) {
+						return user ? next() : next.cancel(router.navigate('config'));
+					});
+				}
+				return next();
+			}
+		});
+
 		config.map([
 			{route: 'config', name: 'config', moduleId: './config/config', nav: true, title: 'Config'},
 			{route: 'stats', name: 'stats', moduleId: './stats/stats', nav: true, title: 'Reputation Stats', checkConfig: true},
@@ -19,17 +31,5 @@ export class App {
 		config.mapUnknownRoutes(instruction => {
 			router.navigate('config');
 		});
-	}
-}
-
-class CheckConfigStep {
-	run(routingContext, next) {
-		if (routingContext.nextInstructions.some(i => i.config.checkConfig)) {
-			var hasConfig = false;
-			if (!hasConfig) {
-				return next.cancel(new Redirect('config'));
-			}
-		}
-		return next();
 	}
 }

@@ -15,7 +15,7 @@ export class Stats {
 	data = null;
 
 	constructor() {
-		console.log('stats');
+		console.log('stats loaded');
 	}
 
 	activate() {
