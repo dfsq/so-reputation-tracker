@@ -1,3 +1,16 @@
 <template>
-	<h1>Configuration screen</h1>
+	<div class="container">
+
+		<header>
+			Application needs some configuration to build statistics for you.
+		</header>
+
+		<h2>User ID</h2>
+		<form class="pure-form">
+		    <fieldset>
+		        <input type="text" value.bind="config.userId" placeholder="Your User ID..">
+		        <button type="submit" class="pure-button pure-button-primary">Save</button>
+		    </fieldset>
+		</form>
+	</div>
 </template>

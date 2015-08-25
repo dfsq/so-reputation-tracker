@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="styles/style.css">
+    <link href="http://yui.yahooapis.com/combo?pure/0.6.0/base-min.css&pure/0.6.0/grids-min.css&pure/0.6.0/forms-min.css&pure/0.6.0/buttons-min.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
 </head>
-
-<body aurelia-app>
+<body aurelia-app="main" class="loading-screen">
 
     <div class="container loading">
 		<div class="sk-fading-circle spinner">
@@ -23,7 +22,7 @@
 			<div class="sk-circle11 sk-circle"></div>
 			<div class="sk-circle12 sk-circle"></div>
 		</div>
-        <h1>Stackoverflow Reputation Tracker</h1>
+        <h1>Stackoverflow Reputation Tracker ${loading}</h1>
     </div>
 
     <script src="jspm_packages/system.js"></script>
