@@ -1,12 +1,13 @@
 <template>
-	<div class="container">
+	<div class="container config-screen">
 
 		<header>
 			Application needs some configuration to build statistics for you.
 		</header>
 
 		<h2>User ID</h2>
-		<form class="pure-form">
+		<form class="pure-form" submit.trigger="save()">
+            <div class="error" show.bind="error.userId">User ID is absolutely necessary!</div>
 		    <fieldset>
 		        <input type="text" value.bind="config.userId" placeholder="Your User ID..">
 		        <button type="submit" class="pure-button pure-button-primary">Save</button>

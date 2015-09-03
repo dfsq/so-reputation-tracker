@@ -9,6 +9,7 @@ export class Storage {
 	}
 
 	set(key, value) {
-		window.localStorage.setItem(key, JSON.stringify(value));
+        var result = window.localStorage.setItem(key, JSON.stringify(value));
+        return Promise.resolve(result);
 	}
 }
