@@ -14,6 +14,7 @@ export class Config {
 	}
 
     save() {
+    	debugger
         if (this.config.userId) {
             this.error.userId = false;
             this.userInfo.setUser({id: this.config.userId})

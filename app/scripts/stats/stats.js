@@ -8,14 +8,13 @@ export class Stats {
 
 	data = null;
 
-	constructor(httpClient, userInfo) {
-        this.http = httpClient;
+	constructor(http, userInfo) {
+        this.http = http;
 		this.userInfo = userInfo;
 	}
 
 	activate() {
-		this.userInfo.getUser().then(user => {
-            console.log('stats', user);
+		this.userInfo.getUser().then(this.refreshProfile.bind(this)).then(user => {
             this.data = data;
         });
 	}

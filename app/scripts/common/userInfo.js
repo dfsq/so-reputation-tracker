@@ -1,15 +1,19 @@
 import {inject} from 'aurelia-framework';
+import {HttpClient} from 'aurelia-fetch-client';
 import {Storage} from './storage';
 
-@inject(Storage)
+@inject(Storage, HttpClient)
 export class UserInfo {
 
-	constructor(storage) {
+	constructor(storage, http) {
 		this.storage = storage;
+		this.http = http;
 	}
 
 	getUser() {
-		return this.storage.get('user');
+		return this.storage.get('user').then(user => {
+			return this.user = user;
+		});
 	}
 
     setUser(data) {
@@ -17,7 +21,12 @@ export class UserInfo {
     }
 
     getProfile() {
-        // .. API call
+        return this.http.fetch('/api/profile/' + this.user.user_id)
+	        .then(response => response.json())
+	        .then(profile => {
+	        	if (!profile.items.length) throw 'Could not load profile';
+	        	return this.setUser(profile.items[0]);
+	        });
     }
 
 	getPeriodRanges() {
