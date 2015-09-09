@@ -1,9 +1,9 @@
 import {data} from './mock-data';
 import {inject} from 'aurelia-framework';
-import {HttpClient} from 'aurelia-fetch-client';
 import {UserInfo} from '../common/userInfo';
+import {Reputation} from '../common/reputation';
 
-@inject(HttpClient, UserInfo)
+@inject(UserInfo, Reputation)
 export class Stats {
 
 	data = null;
@@ -14,6 +14,12 @@ export class Stats {
 	}
 
 	activate() {
+		this.userInfo.getProfile().then(user => {
+			var params = {userId: user.user_id}
+			// this.reputation.load({
+			// 	userId: user
+			// }).then(data => this.data);
+		});
 		this.userInfo.getUser().then(this.refreshProfile.bind(this)).then(user => {
             this.data = data;
         });

@@ -24,4 +24,8 @@ export class Config {
             this.error.userId = true;
         }
     }
+
+    attached() {
+    	console.log(this.btnCalendar);
+    }
 }

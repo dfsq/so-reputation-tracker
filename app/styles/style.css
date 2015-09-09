@@ -19,7 +19,7 @@ body {
 	margin: 50px auto;
 }
 
-/** Spinner animation (from: http://tobiasahlin.com/spinkit/) */
+/* Spinner animation (from: http://tobiasahlin.com/spinkit/) */
 .sk-fading-circle {
   margin: 100px auto;
   width: 40px;
@@ -148,7 +148,6 @@ body {
   0%, 39%, 100% { opacity: 0; width: 5%; height: 5%; }
   40% { opacity: 1; width: 15%; height: 15%; }
 }
-
 @keyframes sk-circleFadeDelay {
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; width: 15%; height: 15%; }
@@ -156,9 +155,60 @@ body {
 
 
 /* Config screen styles */
+.container.config-screen {
+	text-align: left;
+}
+.container.config-screen header {
+	font-size: 1.3em;
+}
 .container.config-screen input {
     color: #222;
 }
 .container.config-screen .error {
     color: brown;
 }
+.container.config-screen .btn-calendar {
+	background: transparent;
+	font-size: 1.7em;
+	padding: 0 .5em;
+}
+
+/* CSS icons */
+/* SASS version http://codepen.io/anon/pen/OyVGMj?editors=110 */
+.icon {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+}
+.icon:before, .icon:after {
+	content: '';
+	position: absolute;
+}
+.icon-calendar {
+	width: 1em;
+	height: .8em;
+	box-shadow: 0 0 0 .1em #FFF, 0 -0.1em 0 .1em #FFF;
+}
+.icon-calendar:after {
+	left: .14em;
+	top: -0.43em;
+	width: .17em;
+	height: .3em;
+	border-radius: .2em;
+	background: #FFF;
+	box-shadow: 0 0 0 .07em #222, .57em 0 0 0em #FFF, .57em 0 0 .07em #222;
+}
+.icon-calendar:before {
+	left: .12em;
+	top: .15em;
+	width: .16em;
+	height: .19em;
+	background: #FFF;
+	box-shadow: .3em 0 0 #FFF, .6em 0 0 #FFF, 0 .33em 0 #FFF, .3em .33em 0 #FFF, .6em .33em 0 #FFF;
+}
+
+
+
+
+
+
