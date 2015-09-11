@@ -17,11 +17,12 @@ export class UserInfo {
 	}
 
     setUser(data) {
+    	data.id = data.user_id || data.id;
         return this.storage.set('user', data);
     }
 
     getProfile() {
-        return this.http.fetch('/api/profile/' + this.user.user_id)
+        return this.http.fetch('/api/profile/' + this.user.id)
 	        .then(response => response.json())
 	        .then(profile => {
 	        	if (!profile.items.length) throw 'Could not load profile';

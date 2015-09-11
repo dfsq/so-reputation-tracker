@@ -29,8 +29,8 @@ export class Config {
     	var datepicker = new Pikaday({
 		    field: this.inputStartDate,
 		    minDate: new Date(2000, 0, 1),
-		    maxDate: new Date(2020, 12, 31),
-		    yearRange: [2010,2020]
+		    maxDate: new Date(),
+		    yearRange: [2010, 2020]
 		});
     	this.btnCalendar.onclick = datepicker.show.bind(datepicker);
     }

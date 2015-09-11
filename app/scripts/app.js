@@ -16,7 +16,7 @@ export class App {
 			run: function(routingContext, next) {
 				if (routingContext.nextInstructions.some(i => i.config.checkConfig)) {
 					return userInfo.getUser().then(function(user) {
-						return user && user.user_id ? next() : next.cancel(router.navigate('config'));
+						return user && user.id ? next() : next.cancel(router.navigate('config'));
 					});
 				}
 				return next();

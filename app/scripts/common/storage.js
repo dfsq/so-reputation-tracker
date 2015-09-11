@@ -5,11 +5,12 @@
 export class Storage {
 
 	get(key) {
-		return Promise.resolve(JSON.parse(window.localStorage.getItem(key) || 'null'));
+		var value = JSON.parse(window.localStorage.getItem(key) || 'null');
+		return Promise.resolve(value);
 	}
 
 	set(key, value) {
-        var result = window.localStorage.setItem(key, JSON.stringify(value));
-        return Promise.resolve(result);
+        window.localStorage.setItem(key, JSON.stringify(value));
+        return Promise.resolve(value);
 	}
 }

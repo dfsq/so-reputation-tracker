@@ -1,15 +1,3 @@
-// ES7 syntax
-//import {bindable} from 'aurelia-framework';
-//export class Chart {
-//	@bindable data = null;
-//}
-// ES6 syntax
-//import {Decorators} from 'aurelia-framework';
-//static decorators() {
-//	return Decorators.bindable({name: 'data', defaultValue: null});
-//}
-
-
 import {bindable} from 'aurelia-framework';
 import d3 from 'd3';
 import nvd3 from 'nvd3';
@@ -17,18 +5,18 @@ import 'nvd3/build/nv.d3.min.css!';
 
 export class Chart {
 
-	@bindable data = null;
+	@bindable data = [];
 
-	attached() {
+	dataChanged() {
+		if (this.data.length) this.renderChart();
+	}
 
-        const initialReputation = 0;
+	renderChart() {
 
-        console.log(this.data);
+        var initialReputation = 0;
 
         nv.addGraph(() => {
             var chart = nv.models.lineChart().options({
-
-                tooltips: true,
                 tooltipContent: function (key, x, y, e, graph) {
 
                     var delta = e.point[3] - planned,
@@ -52,6 +40,8 @@ export class Chart {
                     return d[1] + initialReputation;
                 }
             });
+
+            chart.tooltip.enabled();
 
             chart.xAxis
                 .axisLabel('Date')
