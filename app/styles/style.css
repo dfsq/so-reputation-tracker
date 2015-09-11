@@ -163,6 +163,10 @@ body {
 }
 .container.config-screen input {
     color: #222;
+    margin: 0 .3em;
+}
+.container.config-screen input:first-child {
+	margin-left: 0;
 }
 .container.config-screen .error {
     color: brown;
@@ -170,7 +174,7 @@ body {
 .container.config-screen .btn-calendar {
 	background: transparent;
 	font-size: 1.7em;
-	padding: 0 .5em;
+	padding: 0 .5em 0 .3em;
 }
 
 /* CSS icons */
