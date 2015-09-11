@@ -12,6 +12,10 @@ export class Config {
 	constructor(userInfo, router) {
 		this.userInfo = userInfo;
         this.router = router;
+
+        this.userInfo.getUser().then(user => {
+        	if (user && user.id) this.config.userId = user.id;
+        });
 	}
 
     save() {
