@@ -11,14 +11,18 @@ export class UserInfo {
 	}
 
 	getUser() {
-		return this.storage.get('user').then(user => {
-			return this.user = user;
-		});
+		this.user = this.storage.get('user');
+		this.user.startDate = this.storage.get('startDate');
+		return this.user;
 	}
 
     setUser(data) {
     	data.id = data.user_id || data.id;
         return this.storage.set('user', data);
+    }
+
+    setStartDate(date) {
+    	return this.storage.set('startDate', date);
     }
 
     getProfile() {
@@ -29,9 +33,4 @@ export class UserInfo {
 	        	return this.setUser(profile.items[0]);
 	        });
     }
-
-	getPeriodRanges() {
-		const user = this.getUser();
-		return user && user.ranges;
-	}
 }

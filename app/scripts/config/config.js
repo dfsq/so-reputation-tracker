@@ -13,16 +13,16 @@ export class Config {
 		this.userInfo = userInfo;
         this.router = router;
 
-        this.userInfo.getUser().then(user => {
-        	if (user && user.id) this.config.userId = user.id;
-        });
+        var user = this.userInfo.getUser();
+       	if (user && user.id) this.config.userId = user.id;
 	}
 
     save() {
-        if (this.config.userId) {
+        if (this.config.userId && this.config.startDate) {
             this.error.userId = false;
-            this.userInfo.setUser({id: this.config.userId})
-                .then(() => this.router.navigate('stats'));
+            this.userInfo.setStartDate(this.config.startDate);
+            this.userInfo.setUser({id: this.config.userId});
+            this.router.navigate('stats');
         }
         else {
             this.error.userId = true;

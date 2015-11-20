@@ -14,8 +14,13 @@ export class Stats {
 	}
 
 	activate() {
-		this.userInfo.getUser().then(this.refreshProfile.bind(this)).then(user => {
-			this.data = data;
+		var user = this.userInfo.getUser();
+		this.refreshProfile(user).then(userProfile => {
+			this.reputation.load({
+				userId: user.id,
+				startDate: user.startDate,
+				startReputation: 0
+			}).then(data => this.data = data);
 		});
 	}
 

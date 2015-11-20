@@ -13,6 +13,7 @@ export class Reputation {
 	}
 
 	load(params) {
-		return this.http.get(this.url(params)).then(response => response.json());
+		console.log(params);
+		return this.http.fetch(this.url(params)).then(response => response.json());
 	}
 }
