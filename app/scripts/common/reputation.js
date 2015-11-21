@@ -9,11 +9,10 @@ export class Reputation {
 	}
 
 	url(params) {
-		return `/api/reputation/${params.userId}/${params.startDate}/${params.startReputation}`;
+		return `/api/reputation/${params.userId}/${params.startDate}/${params.startReputation || 0}`;
 	}
 
 	load(params) {
-		console.log(params);
 		return this.http.fetch(this.url(params)).then(response => response.json());
 	}
 }

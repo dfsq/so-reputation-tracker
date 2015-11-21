@@ -12,7 +12,9 @@ export class UserInfo {
 
 	getUser() {
 		this.user = this.storage.get('user');
-		this.user.startDate = this.storage.get('startDate');
+		if (this.user) {
+			this.user.startDate = this.storage.get('startDate');
+		}
 		return this.user;
 	}
 

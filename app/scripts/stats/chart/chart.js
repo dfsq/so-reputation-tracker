@@ -5,15 +5,17 @@ import 'nvd3/build/nv.d3.min.css!';
 
 export class Chart {
 
-	@bindable data = [];
+	@bindable data;
 
 	dataChanged() {
-		if (this.data.length) this.renderChart();
+		if (this.data.values.length) {
+			this.renderChart();
+		}
 	}
 
 	renderChart() {
 
-        var initialReputation = 0;
+        var initialReputation = this.data.initialValue;
 
         nv.addGraph(() => {
             var chart = nv.models.lineChart().options({
@@ -58,7 +60,7 @@ export class Chart {
                     //    [Date.parse(options.startDate), 0, options.startDate],
                     //    [Date.parse(options.endDate), options.goalReputation - initialReputation, options.endDate]
                     //]},
-                    {key: 'Reputation', color: '#1F77B4', values: this.data},
+                    {key: 'Reputation', color: '#1F77B4', values: this.data.values},
                 ])
                 .transition().duration(500).call(chart);
 
