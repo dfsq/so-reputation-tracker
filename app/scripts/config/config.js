@@ -10,6 +10,10 @@ export class Config {
     error  = {userId: false};
 
 	constructor(userInfo, router) {
+
+		// Specific class for this screen (better place for this?)
+		document.body.className = 'config-screen';
+
 		this.userInfo = userInfo;
         this.router = router;
 

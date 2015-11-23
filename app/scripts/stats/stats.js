@@ -11,6 +11,10 @@ export class Stats {
 	info = {};
 
 	constructor(userInfo, reputation, storage) {
+
+		// Specific class for this screen
+		document.body.className = 'stats-screen';
+
 		this.userInfo = userInfo;
 		this.reputation = reputation;
 		this.storage = storage;

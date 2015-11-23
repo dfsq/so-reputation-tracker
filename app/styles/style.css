@@ -1,17 +1,9 @@
 body {
     font-family: 'Open Sans', sans-serif;
-    background: #222;
-    color: #CCC;
+    transition: background .3s ease;
 }
 .container {
-    /*margin: 0 auto;
-    display: block;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-top: -50px;
-    text-align: center;*/
+
 }
 .container .spinner {
 	width: 100px;
@@ -154,20 +146,27 @@ body {
 }
 
 
+/* Loading screen */
+.loading-screen {
+	background: #222;
+    color: #CCC;
+}
+
+
 /* Config screen styles */
-.container.config-screen {
+.config-screen {
 
 }
-.container.config-screen header {
+.config-screen header {
 
 }
-.container.config-screen input {
+.config-screen input {
     margin: 0 .3em;
 }
-.container.config-screen input:first-child {
+.config-screen input:first-child {
 	margin-left: 0;
 }
-.container.config-screen .error {
+.config-screen .error {
     color: brown;
 }
 
