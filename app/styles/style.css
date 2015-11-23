@@ -184,7 +184,8 @@ body {
 .icon-calendar {
 	width: 1em;
 	height: .8em;
-	box-shadow: 0 0 0 .1em #FFF, 0 -0.1em 0 .1em #FFF;
+	box-shadow: 0 0 0 0.1em #222, 0 -0.1em 0 0.1em #222;
+	margin-bottom: 0px;
 }
 .icon-calendar:after {
 	left: .14em;
@@ -192,16 +193,16 @@ body {
 	width: .17em;
 	height: .3em;
 	border-radius: .2em;
-	background: #FFF;
-	box-shadow: 0 0 0 .07em #222, .57em 0 0 0em #FFF, .57em 0 0 .07em #222;
+	background: #222;
+	box-shadow: 0 0 0 0.07em #FFF, 0.57em 0 0 0em #222, 0.57em 0 0 0.07em #FFF;
 }
 .icon-calendar:before {
 	left: .12em;
 	top: .15em;
 	width: .16em;
 	height: .19em;
-	background: #FFF;
-	box-shadow: .3em 0 0 #FFF, .6em 0 0 #FFF, 0 .33em 0 #FFF, .3em .33em 0 #FFF, .6em .33em 0 #FFF;
+	background: #222;
+	box-shadow: 0.3em 0 0 #222, 0.6em 0 0 #222, 0 0.33em 0 #222, 0.3em 0.33em 0 #222, 0.6em 0.33em 0 #222;
 }
 
 

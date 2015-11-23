@@ -1,13 +1,17 @@
 import {inject} from 'aurelia-framework';
 import {Router} from 'aurelia-router';
-import Pickaday from 'pikaday';
 import {UserInfo} from '../common/userInfo';
 
 @inject(UserInfo, Router)
 export class Config {
 
-    config = {userId: null};
+    config = {userId: 949476}; // userId: null
     error  = {userId: false};
+    datepickerConfig = {
+    	minDate: new Date(2010, 0, 1),
+	    maxDate: new Date(),
+	    yearRange: [2011, new Date().getFullYear()]
+    };
 
 	constructor(userInfo, router) {
 
@@ -31,15 +35,5 @@ export class Config {
         else {
             this.error.userId = true;
         }
-    }
-
-    attached() {
-    	var datepicker = new Pikaday({
-		    field: this.inputStartDate,
-		    minDate: new Date(2000, 0, 1),
-		    maxDate: new Date(),
-		    yearRange: [2010, 2020]
-		});
-    	this.btnCalendar.onclick = datepicker.show.bind(datepicker);
     }
 }

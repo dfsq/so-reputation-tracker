@@ -5,8 +5,12 @@
 	<h1>Stats</h1>
 
 	<div class="info">
-		<p><b>User:</b> ${user.display_name}</p>
+		<p><b>User:</b> ${user.display_name} <img style="height: 25px" src.bind="user.profile_image" alt=""></p>
 		<p><b>Start date:</b> ${user.startDate}</p>
+		<p>
+			<b>End date:</b>
+			<datapicker></datapicker>
+		</p>
 	</div>
 
 	<chart data.bind="data"></chart>
