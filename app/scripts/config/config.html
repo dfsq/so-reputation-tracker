@@ -1,19 +1,25 @@
 <template>
-	<div class="container config-screen">
+	<div class="container config-screen text-center">
 
-		<header>Application needs some configuration to build statistics for you.</header>
-		<p>Please specify stackoverflow user ID and start date.</p>
+		<header>
+			<h1>Configure</h1>
+			<p>Application needs some configuration to build statistics for you.</p>
+			<p>Please specify stackoverflow user ID and start date.</p>
+		</header>
 
-		<form class="pure-form" submit.trigger="save()">
+
+		<form class="form-inline" submit.trigger="save()">
             <div class="error" show.bind="error.userId">User ID is absolutely necessary!</div>
-		    <fieldset>
-		        <input type="text" value.bind="config.userId" placeholder="Your User ID">
-		        <input type="text" value.bind="config.startDate" placeholder="... and start date" ref="inputStartDate">
-		        <button type="button" class="pure-button btn-calendar" ref="btnCalendar">
-		        	<i class="icon icon-calendar"></i>
-		        </button>
-		        <button type="submit" class="pure-button pure-button-primary">Save</button>
-		    </fieldset>
+			<div class="form-group">
+				<input type="text" value.bind="config.userId" placeholder="Your user ID or username" class="form-control input-lg">
+			</div>
+			<div class="form-group">
+				<input type="text" value.bind="config.startDate" placeholder="... and start date" ref="inputStartDate" class="form-control input-lg">
+				<button class="btn btn-primary btn-calendar" type="button" ref="btnCalendar">
+					<i class="icon icon-calendar"></i>
+				</button>
+			</div>
+			<button type="submit" class="btn btn-lg btn-primary btn-block">Save</button>
 		</form>
 	</div>
 </template>

@@ -4,14 +4,14 @@ body {
     color: #CCC;
 }
 .container {
-    margin: 0 auto;
+    /*margin: 0 auto;
     display: block;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin-top: -50px;
-    text-align: center;
+    text-align: center;*/
 }
 .container .spinner {
 	width: 100px;
@@ -156,13 +156,12 @@ body {
 
 /* Config screen styles */
 .container.config-screen {
-	text-align: left;
+
 }
 .container.config-screen header {
-	font-size: 1.3em;
+
 }
 .container.config-screen input {
-    color: #222;
     margin: 0 .3em;
 }
 .container.config-screen input:first-child {
@@ -170,11 +169,6 @@ body {
 }
 .container.config-screen .error {
     color: brown;
-}
-.container.config-screen .btn-calendar {
-	background: transparent;
-	font-size: 1.7em;
-	padding: 0 .5em 0 .3em;
 }
 
 /* CSS icons */
