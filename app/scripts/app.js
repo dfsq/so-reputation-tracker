@@ -13,10 +13,12 @@ export class App {
 		const userInfo = this.userInfo;
 
 		config.addPipelineStep('authorize', {
-			run: function(routingContext, next) {
-				if (routingContext.nextInstructions.some(i => i.config.checkConfig)) {
+			run: function(navigationInstruction, next) {
+				if (navigationInstruction.getAllInstructions().some(i => i.config.checkConfig)) {
 					var user = userInfo.getUser();
-					return user && user.id ? next() : next.cancel(router.navigate('config'));
+					if (!user) {
+						return next.cancel(router.navigate('config'));
+					}
 				}
 				return next();
 			}
@@ -27,6 +29,7 @@ export class App {
 			{route: 'stats', name: 'stats', moduleId: './stats/stats', nav: true, title: 'Reputation Stats', checkConfig: true},
 			{route: '', redirect: 'stats'}
 		]);
+
 		config.mapUnknownRoutes(instruction => {
 			router.navigate('config');
 		});
