@@ -34,6 +34,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-nodemon": "^2.0.3",
     "gulp-sourcemaps": "^1.6.0",
+    "jspm": "^0.16.15",
     "run-sequence": "^1.1.2"
   },
   "dependencies": {

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+OLD_HOME=$HOME
+export HOME=$OPENSHIFT_REPO_DIR
+
+if [ -f "${OPENSHIFT_REPO_DIR}"/gulpfile.js ]; then
+    cd "${OPENSHIFT_REPO_DIR}/node_modules/.bin";
+    ./jspm install;
+    ./gulp build;
+    ./gulp bundle;
+fi
+
+export HOME=$OLD_HOME
