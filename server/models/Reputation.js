@@ -1,10 +1,13 @@
 'use strict';
 
 var util = require('util'),
+	Promise = require('promise'),
 	fetch = require('node-fetch'),
 	moment = require('moment'),
 	config = require('../config'),
 	urlPattern = config.api.base + '/users/%d/reputation?fromdate=%s&page=%d&pagesize=100&site=stackoverflow&filter=!-.rIQPq8UE8E';
+
+fetch.Promise = Promise;
 
 /**
  * @param options {Object}

@@ -1,7 +1,10 @@
 'use strict';
 
-var fetch = require('node-fetch'),
+var Promise = require('promise'),
+	fetch = require('node-fetch'),
 	config = require('../config');
+
+fetch.Promise = Promise;
 
 function Profile(userId) {
 	this.userId = userId;
