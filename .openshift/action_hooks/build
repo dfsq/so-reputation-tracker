@@ -4,10 +4,13 @@ OLD_HOME=$HOME
 export HOME=$OPENSHIFT_REPO_DIR
 
 if [ -f "${OPENSHIFT_REPO_DIR}"/gulpfile.js ]; then
-    cd "${OPENSHIFT_REPO_DIR}/node_modules/.bin";
-    ./jspm install;
-    ./gulp build;
-    ./gulp bundle;
+    cd "${OPENSHIFT_REPO_DIR}/node_modules/";
+    .bin/jspm install;
+    .bin/gulp build;
+    .bin/gulp bundle;
+
+    # remove unnesessary files, free inodes
+    rm -rf babel aurelia-bundler jspm browser-sync gulp-babel gulp-nodemon gulp-concat run-sequence gulp-changed
 fi
 
 export HOME=$OLD_HOME
