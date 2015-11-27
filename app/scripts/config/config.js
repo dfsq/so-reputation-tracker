@@ -10,7 +10,8 @@ export class Config {
     datepickerConfig = {
     	minDate: new Date(2010, 0, 1),
 	    maxDate: new Date(),
-	    yearRange: [2011, new Date().getFullYear()]
+	    yearRange: [2011, new Date().getFullYear()],
+	    format: 'YYYY-MM-DD'
     };
 
 	constructor(userInfo, router) {
@@ -27,10 +28,13 @@ export class Config {
 
     save() {
         if (this.config.userId && this.config.startDate) {
+
             this.error.userId = false;
+
             this.userInfo.setStartDate(this.config.startDate);
             this.userInfo.setUser({id: this.config.userId});
-            this.router.navigate('stats');
+
+            this.router.navigateToRoute('stats', {userId: this.config.userId, startDate: this.config.startDate});
         }
         else {
             this.error.userId = true;

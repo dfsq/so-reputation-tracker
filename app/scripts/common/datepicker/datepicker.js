@@ -1,4 +1,5 @@
 import {bindable, inject} from 'aurelia-framework';
+import moment from 'moment';
 import Pickaday from 'pikaday';
 
 @inject(Element)

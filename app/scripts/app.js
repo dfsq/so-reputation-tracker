@@ -25,8 +25,19 @@ export class App {
 		});
 
 		config.map([
-			{route: 'config', name: 'config', moduleId: './config/config', nav: true, title: 'Config'},
-			{route: 'stats', name: 'stats', moduleId: './stats/stats', nav: true, title: 'Reputation Stats', checkConfig: true},
+			{
+				route: 'config',
+				name: 'config',
+				moduleId: './config/config',
+				title: 'Config'
+			},
+			{
+				route: 'stats/:userId/:startDate',
+				name: 'stats',
+				moduleId: './stats/stats',
+				title: 'Reputation Stats',
+				checkConfig: true
+			},
 			{route: '', redirect: 'stats'}
 		]);
 
