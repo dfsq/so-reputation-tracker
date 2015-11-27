@@ -26,14 +26,14 @@ System.config({
     "bootstrap": "github:twbs/bootstrap@3.3.6",
     "clean-css": "npm:clean-css@3.4.8",
     "core-js": "npm:core-js@1.2.6",
-    "css": "github:systemjs/plugin-css@0.1.20",
+    "css": "github:systemjs/plugin-css@0.1.19",
     "d3": "npm:d3@3.5.9",
     "moment": "npm:moment@2.10.6",
     "nvd3": "npm:nvd3@1.8.1",
     "pikaday": "github:dbushell/Pikaday@1.4.0",
     "text": "github:systemjs/plugin-text@0.0.3",
     "github:dbushell/Pikaday@1.4.0": {
-      "css": "github:systemjs/plugin-css@0.1.20"
+      "css": "github:systemjs/plugin-css@0.1.19"
     },
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
