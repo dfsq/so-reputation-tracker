@@ -5,16 +5,17 @@
 			position: relative;
 		}
 		.datepicker-wrap .btn-calendar {
+			background: transparent;
 			position: absolute;
 			top: 50%;
 			right: 0;
 			-webkit-transform: translateY(-50%);
-			background: transparent;
+			transform: translateY(-50%);
 		}
 	</style>
 
 	<div class="datepicker-wrap">
-		<input placeholder="... and start date" class="form-control input-lg"
+		<input placeholder="${options.placeholder}" class="form-control input-lg"
 			   value.bind="config.startDate" ref="inputElement">
 		<button class="btn btn-lg btn-calendar" type="button" ref="btnElement">
 			<i class="icon icon-calendar"></i>
