@@ -255,9 +255,6 @@ System.config({
     "npm:inherits@2.0.1": {
       "util": "github:jspm/nodelibs-util@0.1.0"
     },
-    "npm:moment@2.10.6": {
-      "process": "github:jspm/nodelibs-process@0.1.2"
-    },
     "npm:nvd3@1.8.1": {
       "d3": "npm:d3@3.5.9"
     },
