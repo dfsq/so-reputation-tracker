@@ -8,7 +8,7 @@ body {
 .container .spinner {
 	width: 100px;
 	height: 100px;
-	margin: 50px auto;
+	margin: 0 auto 40px;
 }
 
 /* Spinner animation (from: http://tobiasahlin.com/spinkit/) */
@@ -149,7 +149,13 @@ body {
 /* Loading screen */
 .loading-screen {
 	background: #222;
-    color: #CCC;
+    color: #EDEDED;
+}
+.loading-screen .loading {
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 
 
@@ -168,6 +174,13 @@ body {
 }
 .config-screen .error {
     color: brown;
+}
+
+@media (max-width: 767px) {
+	.btn-xs-block {
+		display: block;
+		width: 100%;
+	}
 }
 
 /* CSS icons */
