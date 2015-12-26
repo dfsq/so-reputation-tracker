@@ -8,8 +8,21 @@ body {
 .container .spinner {
 	width: 100px;
 	height: 100px;
-	margin: 0 auto 40px;
+	margin: 30px auto 0;
 }
+
+.container-centered {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	width: 90%;
+}
+
+
+
+
 
 /* Spinner animation (from: http://tobiasahlin.com/spinkit/) */
 .sk-fading-circle {
@@ -146,17 +159,20 @@ body {
 }
 
 
+
+
+
 /* Loading screen */
 .loading-screen {
 	background: #222;
     color: #EDEDED;
 }
 .loading-screen .loading {
-	position: absolute;
-	top: 50%;
-	-webkit-transform: translateY(-50%);
-	transform: translateY(-50%);
+
 }
+
+
+
 
 
 /* Config screen styles */
@@ -174,6 +190,7 @@ body {
 }
 .config-screen .error {
     color: brown;
+	text-align: left;
 }
 
 @media (max-width: 767px) {

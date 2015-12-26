@@ -6,7 +6,9 @@ import {UserInfo} from '../common/userInfo';
 export class Config {
 
     config = {userId: 949476}; // userId: null
-    error  = {userId: false};
+
+    error  = {userId: false, startDate: false};
+
     datepickerConfig = {
     	minDate: new Date(2010, 0, 1),
 	    maxDate: new Date(),
@@ -27,9 +29,8 @@ export class Config {
 	}
 
     save() {
-        if (this.config.userId && this.config.startDate) {
 
-            this.error.userId = false;
+        if (this.config.userId && this.config.startDate) {
 
             this.userInfo.setStartDate(this.config.startDate);
             this.userInfo.setUser({id: this.config.userId});
@@ -37,7 +38,7 @@ export class Config {
             this.router.navigateToRoute('stats', {userId: this.config.userId, startDate: this.config.startDate});
         }
         else {
-            this.error.userId = true;
+	        ['userId', 'startDate'].forEach(field => this.error[field] = !this.config[field]);
         }
     }
 }

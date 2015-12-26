@@ -1,5 +1,5 @@
 <template>
-	<div class="container config-screen text-center">
+	<div class="container container-centered config-screen text-center">
 
 		<header>
 			<h1>Configure</h1>
@@ -9,12 +9,13 @@
 
 
 		<form class="form-inline" submit.trigger="save()">
-            <div class="error" show.bind="error.userId">User ID is absolutely necessary!</div>
 			<div class="form-group">
 				<input type="text" value.bind="config.userId" placeholder="Your user ID or username" class="form-control input-lg">
+				<div class="error" show.bind="error.userId">User ID is absolutely necessary.</div>
 			</div>
 			<div class="form-group">
 				<datepicker placeholder="... and start date" options.bind="datepickerConfig"></datepicker>
+				<div class="error" show.bind="error.startDate">Please set a starting date.</div>
 			</div>
 			<button type="submit" class="btn btn-lg btn-primary btn-xs-block">Get my stats!</button>
 		</form>
