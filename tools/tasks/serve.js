@@ -5,7 +5,7 @@ var gulp = require('gulp'),
 	config = require('../../server/config');
 
 // Run development server
-gulp.task('serve', ['browser-sync'], function() {});
+gulp.task('serve', ['build', 'browser-sync'], function() {});
 
 // Browsersync plugin reload UI
 gulp.task('browser-sync', ['nodemon', 'watch'], function() {

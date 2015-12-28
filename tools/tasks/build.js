@@ -13,9 +13,9 @@ gulp.task('build', function(callback) {
 
 gulp.task('build-js', function() {
 	return gulp.src(paths.source)
-		.pipe(sourcemaps.init())
+		.pipe(sourcemaps.init({loadMaps: true}))
 		.pipe(babel(babelOptions))
-		.pipe(sourcemaps.write('.'))
+		.pipe(sourcemaps.write({includeContent: true}))
 		.pipe(gulp.dest(paths.target));
 });
 
