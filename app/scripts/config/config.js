@@ -1,44 +1,43 @@
-import {inject} from 'aurelia-framework';
-import {Router} from 'aurelia-router';
-import {UserInfo} from '../common/userInfo';
+import { inject } from 'aurelia-framework';
+import { useView } from 'aurelia-templating';
+import { Router } from 'aurelia-router';
+import { Configuration } from '../common/configuration';
 
-@inject(UserInfo, Router)
-export class Config {
+@inject(Router, Configuration)
+@useView('./config/config.html')
+export class ConfigVM {
 
-    config = {userId: 949476}; // userId: null
+	error  = {};
 
-    error  = {userId: false, startDate: false};
+	datepickerConfig = {
+		minDate: new Date(2010, 0, 1),
+		maxDate: new Date(),
+		yearRange: [2011, new Date().getFullYear()],
+		format: 'YYYY-MM-DD'
+	};
 
-    datepickerConfig = {
-    	minDate: new Date(2010, 0, 1),
-	    maxDate: new Date(),
-	    yearRange: [2011, new Date().getFullYear()],
-	    format: 'YYYY-MM-DD'
-    };
+	constructor(router, configuration) {
 
-	constructor(userInfo, router) {
-
-		// Specific class for this screen (better place for this?)
 		document.body.className = 'config-screen';
 
-		this.userInfo = userInfo;
-        this.router = router;
+		this.router = router;
+		this.config = configuration;
 
-        var user = this.userInfo.getUser();
-       	if (user && user.id) this.config.userId = user.id;
+		this.model = this.config.get();
+		console.log('Config', this.model);
 	}
 
-    save() {
+	save() {
 
-        if (this.config.userId && this.config.startDate) {
+		if (!this.model.userId || !this.model.startDate) {
+			['userId', 'startDate'].forEach(field => this.error[field] = !this.config[field]);
+		}
 
-            this.userInfo.setStartDate(this.config.startDate);
-            this.userInfo.setUser({id: this.config.userId});
+		this.config.set({
+			userId: this.model.userId,
+			startDate: this.model.startDate
+		});
 
-            this.router.navigateToRoute('stats', {userId: this.config.userId, startDate: this.config.startDate});
-        }
-        else {
-	        ['userId', 'startDate'].forEach(field => this.error[field] = !this.config[field]);
-        }
-    }
+		this.router.navigateToRoute('stats', {userId: this.model.userId, startDate: this.model.startDate});
+	}
 }
