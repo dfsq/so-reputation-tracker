@@ -24,7 +24,6 @@ export class ConfigVM {
 		this.config = configuration;
 
 		this.model = this.config.get();
-		console.log('Config', this.model);
 	}
 
 	save() {
