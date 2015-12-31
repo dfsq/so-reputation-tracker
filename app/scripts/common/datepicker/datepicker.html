@@ -4,6 +4,9 @@
 		.datepicker-wrap {
 			position: relative;
 		}
+		.datepicker-wrap .form-control {
+			background: transparent;
+		}
 		.datepicker-wrap .btn-calendar {
 			background: transparent;
 			position: absolute;
@@ -15,7 +18,7 @@
 	</style>
 
 	<div class="datepicker-wrap">
-		<input placeholder="${options.placeholder}" class="form-control input-lg" ref="inputElement">
+		<input placeholder="${options.placeholder}" class="${options.className}" ref="inputElement" readonly="readonly">
 		<button class="btn btn-lg btn-calendar" type="button" ref="btnElement">
 			<i class="icon icon-calendar"></i>
 		</button>
