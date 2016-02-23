@@ -5,15 +5,21 @@ var moment = require('moment'),
 
 function reputationRoute(req, res) {
 
-	var userId = req.params.userId,
-		startDate = req.params.startDate,
-		startReputation = Number(req.params.startReputation),
+	var params = req.query,
 		reputation;
 
+	if (!params.userId || !params.startDate) {
+		res.status(400);
+		res.header('Content-Type', 'application/json');
+		res.send({error: 'Invalid parameters: userId and startDate are required.', status: 400});
+		return;
+	}
+
 	reputation = new Reputation({
-		userId: userId,
-		startDate: moment(new Date(startDate)).unix(),
-		startReputation: startReputation
+		userId: params.userId,
+		startDate: moment(new Date(params.startDate)).unix(),
+		endDate: params.endDate ? moment(new Date(params.endDate)).add(1, 'day').unix() : '',
+		startReputation: Number(params.startReputation || 0)
 	});
 
 	reputation.get().then(function(data) {
@@ -23,5 +29,5 @@ function reputationRoute(req, res) {
 }
 
 module.exports = function (app) {
-	app.get('/api/reputation/:userId/:startDate/:startReputation', reputationRoute);
+	app.get('/api/reputation', reputationRoute);
 };

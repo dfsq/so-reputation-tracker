@@ -1,40 +1,69 @@
 'use strict';
 
 var util = require('util'),
+	queryString =require('querystring'),
 	Promise = require('promise'),
 	fetch = require('node-fetch'),
 	moment = require('moment'),
-	config = require('../config'),
-	urlPattern = config.api.base + '/users/%d/reputation?fromdate=%s&page=%d&pagesize=100&site=stackoverflow&filter=!-.rIQPq8UE8E';
+	config = require('../config');
+
+fetch.Promise = Promise;
+
+var getEndpoint = function(userId) {
+
+	var url = config.api.base + '/users/' + userId + '/reputation?',
+		baseParams = {
+			site: 'stackoverflow',
+			filter: '!-.rIQPq8UE8E',
+			pagesize: 100
+		};
+
+	return {
+		params: function(params) {
+			return url + queryString.stringify(util._extend(baseParams, params));
+		}
+	};
+};
+
 
 fetch.Promise = Promise;
 
 /**
  * @param options {Object}
- * @property userId {Number}
- * @property startDate {String}
- * @property startReputation {Number}
+ * @param options.userId {Number}
+ * @param options.startDate {String}
+ * @param [options.endDate] {String}
+ * @param options.startReputation {Number}
+ * @property endpoint {Object}
  * @constructor
  */
 function Reputation(options) {
 	this.options = options;
+	this.endpoint = getEndpoint(options.userId);
 }
 
 Reputation.prototype.get = function () {
 
 	var daysHash = {},
 		page = 1,
-		options = this.options;
+		options = this.options,
+		endpoint = this.endpoint;
 
 	/**
 	 * @param page
 	 * @returns {Promise}
 	 */
 	function fetchPage(page) {
-		return fetch(util.format(urlPattern, options.userId, options.startDate, page))
-			.then(function(response) {
-				return response.json();
-			});
+
+		var url = endpoint.params({
+			page: page,
+			fromdate: options.startDate,
+			todate: options.endDate
+		});
+
+		return fetch(url).then(function(response) {
+			return response.json();
+		});
 	}
 
 	return fetchPage(page).then(function nextPage(data) {
@@ -78,14 +107,19 @@ Reputation.prototype.get = function () {
 			return a[0] - b[0];
 		});
 
-		// Reputation start from some initial value
+		// Reputation starts from some initial value
 		days[0][1] += options.startReputation;
 
 		for (var i = 1; i < days.length; i++) {
 			days[i][1] += days[i - 1][1];
 		}
 
-		return days;
+		return {
+			total: days[days.length - 1][1] - options.startReputation,
+			startDate: {unix: days[0][0], formatted: days[0][2]},
+			endDate: {unix: days[days.length - 1][0], formatted: days[days.length - 1][2]},
+			days: days
+		};
 	});
 };
 
