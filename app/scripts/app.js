@@ -1,6 +1,6 @@
-import { inject } from 'aurelia-framework';
-import { Router } from 'aurelia-router';
-import { Configuration } from './common/configuration';
+import {inject} from 'aurelia-framework';
+import {Router} from 'aurelia-router';
+import {Configuration} from './common/configuration';
 
 @inject(Router, Configuration)
 export class App {
@@ -12,7 +12,7 @@ export class App {
 
 	configureRouter(config, router) {
 
-		const user = this.configuration.userId;
+		var user = this.configuration && this.configuration.userId;
 
 		config.title = 'Stackoverflow Reputation Tracker';
 
