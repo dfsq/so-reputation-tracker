@@ -4,8 +4,7 @@
 export class Storage {
 
 	get(key) {
-		var value = JSON.parse(window.localStorage.getItem(key) || 'null');
-		return value;
+		return JSON.parse(window.localStorage.getItem(key) || 'null');
 	}
 
 	set(key, value) {

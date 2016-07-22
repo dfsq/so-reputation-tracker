@@ -7,12 +7,13 @@ export class App {
 
 	// https://github.com/aurelia/router/issues/60#issuecomment-101421389
 	constructor(router, configuration) {
+		window.configuration = configuration;
 		this.configuration = configuration.get();
 	}
 
 	configureRouter(config, router) {
 
-		var user = this.configuration && this.configuration.userId;
+		var user = this.configuration && this.configuration.profile;
 
 		config.title = 'Stackoverflow Reputation Tracker';
 

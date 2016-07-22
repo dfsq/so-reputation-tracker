@@ -60,7 +60,9 @@ export class Chart {
                     //    [Date.parse(options.startDate), 0, options.startDate],
                     //    [Date.parse(options.endDate), options.goalReputation - initialReputation, options.endDate]
                     //]},
-                    {key: 'Reputation', color: '#1F77B4', values: this.data.values},
+                    // TODO: this.data.values[0].days should be just this.data.values
+                    // Make this.data.values be an array of data not array of arrays of data
+                    {key: 'Reputation', color: '#1F77B4', values: this.data.values[0].days},
                 ])
                 .transition().duration(500).call(chart);
 

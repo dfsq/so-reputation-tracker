@@ -47,6 +47,7 @@ Reputation.prototype.get = function () {
 	var daysHash = {},
 		page = 1,
 		options = this.options,
+		userId = options.userId,
 		endpoint = this.endpoint;
 
 	/**
@@ -115,6 +116,7 @@ Reputation.prototype.get = function () {
 		}
 
 		return {
+			userId: userId,
 			total: days[days.length - 1][1] - options.startReputation,
 			startDate: {unix: days[0][0], formatted: days[0][2]},
 			endDate: {unix: days[days.length - 1][0], formatted: days[days.length - 1][2]},

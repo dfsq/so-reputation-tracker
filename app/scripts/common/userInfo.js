@@ -1,38 +1,26 @@
-import {inject} from 'aurelia-framework';
-import {HttpClient} from 'aurelia-fetch-client';
-import {Storage} from './storage';
+import { inject } from 'aurelia-framework';
+import { HttpClient } from 'aurelia-fetch-client';
+import { Configuration } from './configuration';
 
-@inject(Storage, HttpClient)
+@inject(Configuration, HttpClient)
 export class UserInfo {
-
-	constructor(storage, http) {
-		this.storage = storage;
+	constructor(configuration, http) {
+		this.configuration = configuration
 		this.http = http;
 	}
 
-	getUser() {
-		this.user = this.storage.get('user');
-		if (this.user) {
-			this.user.startDate = this.storage.get('startDate');
-		}
-		return this.user;
-	}
-
-    setUser(data) {
-    	data.id = data.user_id || data.id;
-        return this.storage.set('user', data);
-    }
-
-    setStartDate(date) {
-    	return this.storage.set('startDate', date);
+    setProfile(profile) {
+    	const config = this.configuration.get()
+    	Object.assign(config.profile, profile)
+    	return this.configuration.set(config).profile
     }
 
     getProfile() {
-        return this.http.fetch('/api/profile/' + this.user.id)
+        return this.http.fetch('/api/profile/' + this.configuration.get().profile.id)
 	        .then(response => response.json())
 	        .then(profile => {
 	        	if (!profile.items.length) throw 'Could not load profile';
-	        	return this.setUser(profile.items[0]);
-	        });
+	        	return this.setProfile(profile.items[0]);
+	        })
     }
 }

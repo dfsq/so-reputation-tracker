@@ -1,70 +1,45 @@
-import {inject} from 'aurelia-framework';
-import {UserInfo} from '../common/userInfo';
-import {Reputation} from '../common/reputation';
-import {Storage} from '../common/storage';
-import moment from 'moment';
+import { inject } from 'aurelia-framework';
+import { Reputation } from './reputation';
+import { UserInfo } from '../common/userInfo'
+import { Configuration } from '../common/configuration';
+import { DATE_FORMAT } from '../common/constants'
 
-@inject(UserInfo, Reputation, Storage)
+@inject(Reputation, Configuration, UserInfo)
 export class Stats {
 
 	data = [];
-	info = {};
 
-	constructor(userInfo, reputation, storage) {
-
+	constructor(reputation, configuration, userInfo) {
 		// Specific class for this screen
 		document.body.className = 'stats-screen';
 
-		this.userInfo = userInfo;
 		this.reputation = reputation;
-		this.storage = storage;
+		this.configuration = configuration;
+		this.userInfo = userInfo
 	}
 
 	activate() {
+		var config = this.configuration.get();
 
-		// Get chart data
-		var user = this.userInfo.getUser();
-		this.refreshProfile(user).then(userProfile => {
+		if (!config.endDate) {
+			var endDate = moment();
+			config.endDate = {
+				unix: endDate.unix(),
+				formatted: endDate.format(DATE_FORMAT)
+			};
+		}
 
-			let cache = this.storage.get('reputation');
-
-			if (cache) {
-				return this.data = {
-					values: cache,
-					initialValue: userProfile.reputation - this.getTotal(cache)
-				};
+		Promise.all([
+			this.userInfo.getProfile(),
+			this.reputation.load(config)
+		])
+		.then(([profile, data] = values) => {
+			this.data = {
+				values: data,
+				initialValue: profile.reputation - data[0].total
 			}
-
-			this.reputation.load({
-				userId: user.id,
-				startDate: user.startDate
-			}).then(data => {
-				this.data = {
-					values: data,
-					initialValue: userProfile.reputation - this.getTotal(data)
-				};
-				this.storage.set('reputation', data);
-			});
+			this.profile = profile
+			this.config = config
 		});
-
-		// Information
-		this.user = user;
-		this.user.startDate = moment(user.startDate).format('DD MMM YYYY');
 	}
-
-    /**
-     * Load and refresh in storage user profile data.
-     * @return {Promise}
-     */
-    refreshProfile() {
-        return this.userInfo.getProfile();
-    }
-
-    /**
-     * Get total reputation growth since startDate. The value is stored in the second element of the last object in array.
-     */
-    getTotal(data) {
-    	if (!data.length) return 0;
-    	return data[data.length - 1][1];
-    }
 }

@@ -1,7 +1,7 @@
 import { bindable, inject } from 'aurelia-framework';
 import { bindingMode } from 'aurelia-binding';
 import { useShadowDOM } from 'aurelia-templating';
-import moment from 'moment';
+import 'moment';
 import Pickaday from 'pikaday';
 
 @inject(Element)

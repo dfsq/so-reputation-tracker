@@ -13,7 +13,7 @@ export class Configuration {
 	 * @param config {Object}
 	 */
 	set(config) {
-		this.storage.set('config', config);
+		return this.storage.set('config', config);
 	}
 
 	/**

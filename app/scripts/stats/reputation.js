@@ -2,8 +2,6 @@ import {inject } from 'aurelia-framework';
 import {HttpClient } from 'aurelia-fetch-client';
 import {PeriodsResolver } from './periodsResolver';
 
-import {data} from './mock-data'
-
 @inject(HttpClient, PeriodsResolver)
 export class Reputation {
 
@@ -21,26 +19,40 @@ export class Reputation {
 	 * @return {Promise}
 	 */
 	request(params) {
-		return this.http.fetch('/api/reputation').then(response => {
-			return response.json();
-		});
+
+		var queryString = new URLSearchParams()
+		queryString.append('userId', params.profile.id)
+		queryString.append('startDate', params.startDate.formatted)
+
+		if (queryString.endDate) {
+			queryString.append('endDate', params.endDate.formatted)
+		}
+
+		return this.http.fetch('/api/reputation?' + queryString)
+			.then(res => res.json())
 	}
 
 	/**
 	 * @param params {Object}
-	 * @param params.userId {Number}
+	 * @pa
+	 * @param params.profile.userId {Number}
 	 * @param params.startDate {String}
 	 * @param [params.startReputation] {Number}
 	 * @return {Promise}
 	 */
 	load(params) {
-		//return Promise.resolve(data);
 		var periods = this.periodsResolver.get(params);
 		return Promise.all(periods.map(period => {
-			return period.days || this.request(period);
+			if (period.days) {
+				return period.days
+			}
+
+			return this.request(period)
+				//.then(data => this.periodsResolver.savePeriod(data))
 		}))
-		// Merge all periods
-		.then((allDays) => {
+		// .then(periods => this.periodsResolver.mergePeriods(periods))
+		.then(allDays => {
+			// console.log('===== all days', allDays)
 			return [].concat.apply([], allDays);
 		})
 	}
