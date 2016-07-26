@@ -10,6 +10,12 @@ var express = require('express'),
 // Static assets
 app.use(express.static(config.server.appPath));
 
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});
+
 // Routes
 [
 	'api/profile',
